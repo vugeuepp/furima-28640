@@ -43,6 +43,7 @@
 ### Association
 - has_one :address
 
+
 ## address
 
 | Column        | Type   | Options     |
@@ -57,3 +58,4 @@
 
 ### Association
 - belongs_to :record
+
