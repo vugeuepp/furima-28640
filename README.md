@@ -3,12 +3,14 @@
 | Column                | Type   | Options     |
 | --------------------- | ------ | ----------- |
 | nickname              | string | null: false |
-| mail                  | string | null: false |
+| email                 | string | null: false |
 | password              | string | null: false |
-| password_confirmation | string | null: false |
-| name                  | string | null: false |
-| name_reading          | string | null: false |
-| birthday              | string | null: false |
+| encrypted_password    | string | null: false |
+| last_name             | string | null: false |
+| first_name            | string | null: false |
+| last_reading          | string | null: false |
+| first_reading         | string | null: false |
+| date                  | string | null: false |
 
 
 ### Association
@@ -17,45 +19,48 @@
 
 ## items
 
-| Column    | Type   | Options     |
-| --------- | ------ | ----------- |
-| image     | string | null: false |
-| item_name | string | null: false |
-| about     | string | null: false |
-| category  | string | null: false |
-| condition | string | null: false |
-| shipping  | string | null: false |
-| area      | string | null: false |
-| days      | string | null: false |
-| price     | string | null: false |
+| Column       | Type    | Options     |
+| ------------ | ------- | ----------- |
+| item_name    | string  | null: false |
+| about        | text    | null: false |
+| category_id  | integer | null: false |
+| condition_id | integer | null: false |
+| shipping_id  | integer | null: false |
+| area_id      | integer | null: false |
+| days_id      | integer | null: false |
+| price        | integer | null: false |
 
 ### Association
 - has_one :record
+- has_one :user
 
 ## records
 
-| Column   | Type   | Options     |
-| -------- | ------ | ----------- |
-| costomer | string | null: false |
-| item     | string | null: false |
-
+| Column | Type       | Options                        |
+| ------ | ---------- | ------------------------------ |
+| user   | references | null: false, foreign_key: true |
+| item   | references | null: false, foreign_key: true |
 
 ### Association
-- has_one :address
+- belongs_to :user
+- belongs_to :item
 
 
 ## address
 
-| Column        | Type   | Options     |
-| ------------- | ------ | ----------- |
-| postal_code   | string | null: false |
-| prefecture    | string | null: false |
-| city          | string | null: false |
-| house_number  | string | null: false |
-| building_name | string |             |
-| tel_number    | string | null: false |
+| Column        | Type       | Options                        |
+| ------------- | ---------- | ------------------------------ |
+| postal_code   | string     | null: false                    |
+| prefecture    | integer    | null: false                    |
+| city          | string     | null: false                    |
+| house_number  | string     | null: false                    |
+| building_name | string     |                                |
+| tel_number    | string     | null: false                    |
+| user          | references | null: false, foreign_key: true |
+| item          | references | null: false, foreign_key: true |
 
 
 ### Association
-- belongs_to :record
+- belongs_to :item
+- belongs_to :user
 
