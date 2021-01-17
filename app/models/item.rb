@@ -10,7 +10,7 @@ class Item < ApplicationRecord
   belongs_to :prefecture
   belongs_to :day
 
-  with_options presence: true, format: { with: /[0-9]\d/, message: 'Half-width number' } do
+  with_options format: { with: /[0-9]\d/, message: 'Half-width number' } do
     validates :price
   end
 
