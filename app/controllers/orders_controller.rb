@@ -2,7 +2,11 @@ class OrdersController < ApplicationController
   before_action :set_item, only: [:index, :create]
 
   def index
-    @order_info = OrderInfo.new
+    if @item.record.blank?
+      @order_info = OrderInfo.new
+    else
+      redirect_to root_path
+    end
   end
 
   def create
