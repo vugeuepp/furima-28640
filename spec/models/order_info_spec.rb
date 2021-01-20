@@ -34,6 +34,11 @@ RSpec.describe OrderInfo, type: :model do
         @order_info.valid?
         expect(@order_info.errors.full_messages).to include("Prefecture Select")
       end
+      it 'prefecture_idが空だと保存できないこと' do
+        @order_info.prefecture_id = nil
+        @order_info.valid?
+        expect(@order_info.errors.full_messages).to include("Prefecture can't be blank", "Prefecture Select")
+      end
       it 'cityが空だと保存できないこと' do
         @order_info.city = nil
         @order_info.valid?
