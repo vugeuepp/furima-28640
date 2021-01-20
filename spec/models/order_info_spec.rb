@@ -22,22 +22,22 @@ RSpec.describe OrderInfo, type: :model do
       it 'postal_codeが空だと保存できないこと' do
         @order_info.postal_code = nil
         @order_info.valid?
-        expect(@order_info.errors.full_messages).to include("Postal code can't be blank", "Postal code Input correctly")
+        expect(@order_info.errors.full_messages).to include("Postal code can't be blank", 'Postal code Input correctly')
       end
       it 'postal_codeが半角のハイフンを含んだ正しい形式でないと保存できないこと' do
         @order_info.postal_code = '1234567'
         @order_info.valid?
-        expect(@order_info.errors.full_messages).to include("Postal code Input correctly")
+        expect(@order_info.errors.full_messages).to include('Postal code Input correctly')
       end
       it 'prefecture_idを選択していないと保存できないこと' do
         @order_info.prefecture_id = 1
         @order_info.valid?
-        expect(@order_info.errors.full_messages).to include("Prefecture Select")
+        expect(@order_info.errors.full_messages).to include('Prefecture Select')
       end
       it 'prefecture_idが空だと保存できないこと' do
         @order_info.prefecture_id = nil
         @order_info.valid?
-        expect(@order_info.errors.full_messages).to include("Prefecture can't be blank", "Prefecture Select")
+        expect(@order_info.errors.full_messages).to include("Prefecture can't be blank", 'Prefecture Select')
       end
       it 'cityが空だと保存できないこと' do
         @order_info.city = nil
@@ -57,12 +57,12 @@ RSpec.describe OrderInfo, type: :model do
       it 'tel_numberは半角数字のみ保存可能であること' do
         @order_info.tel_number = '０９０１１０９１１０９'
         @order_info.valid?
-        expect(@order_info.errors.full_messages).to include("Tel number Half-width number")
+        expect(@order_info.errors.full_messages).to include('Tel number Half-width number')
       end
       it 'tel_numberが12桁以上では保存できないこと' do
         @order_info.tel_number = '090110911099'
         @order_info.valid?
-        expect(@order_info.errors.full_messages).to include("Tel number too long")
+        expect(@order_info.errors.full_messages).to include('Tel number too long')
       end
       it 'tokenが空では登録できないこと' do
         @order_info.token = nil
